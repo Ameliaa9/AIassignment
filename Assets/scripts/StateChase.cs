@@ -1,14 +1,20 @@
 using UnityEngine;
+using System.Collections; 
+ 
 
 public class StateChase : State
 {
-
-    //constructor
+    // Constructor
     public StateChase(AIController ai) : base(ai) { }
 
     public override void Enter()
     {
-        //Debug.Log("Entering Chase State");
+        // Show "RUN!" UI when chase starts
+        if (ai.runTextUI != null)
+        {
+            ai.runTextUI.SetActive(true);
+            ai.StartCoroutine(HideRunText());
+        }
     }
 
     public override void Update()
@@ -22,6 +28,19 @@ public class StateChase : State
 
     public override void Exit()
     {
-        //Debug.Log("Exiting Chase State");
+        
+        if (ai.runTextUI != null)
+        {
+            ai.runTextUI.SetActive(false);
+        }
+    }
+
+    private IEnumerator HideRunText()
+    {
+        yield return new WaitForSeconds(2f);
+        if (ai.runTextUI != null)
+        {
+            ai.runTextUI.SetActive(false);
+        }
     }
 }

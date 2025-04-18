@@ -1,11 +1,15 @@
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
+
 
 public class AIController : MonoBehaviour
 {
     public StateMachine stateMachine;
     public Transform player;
     public NavMeshAgent agent;
+    public GameObject runTextUI;
+
 
 
     public float playerVolume = 15f;
